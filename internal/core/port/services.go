@@ -10,6 +10,6 @@ type BookService interface {
 }
 
 type OrderService interface {
-	Add(key string) (domain.Order, error)
+	Add(key, pickupSchedule string) (domain.Order, error)
 	Get() ([]domain.Order, error)
 }

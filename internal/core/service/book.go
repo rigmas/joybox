@@ -30,5 +30,10 @@ func (b *bookService) Get() ([]domain.Book, error) {
 }
 
 func (b *bookService) GetOne(key string) (domain.Book, error) {
+	// books, err := b.Get()
+	// if err != nil {
+	// 	return domain.Book{}, err
+	// }
+
 	return domain.Book{}, nil
 }
