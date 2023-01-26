@@ -8,7 +8,6 @@ import (
 
 type bookService struct {
 	apiBook port.BookApi
-	// repoBook port.BookRepository
 }
 
 func NewBookService(api port.BookApi) (*bookService, error) {
@@ -27,13 +26,4 @@ func (b *bookService) Get() ([]domain.Book, error) {
 	books = utils.BookConverter(rawData)
 
 	return books, nil
-}
-
-func (b *bookService) GetOne(key string) (domain.Book, error) {
-	// books, err := b.Get()
-	// if err != nil {
-	// 	return domain.Book{}, err
-	// }
-
-	return domain.Book{}, nil
 }
