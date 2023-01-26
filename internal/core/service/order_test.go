@@ -2,9 +2,11 @@ package service
 
 import (
 	"testing"
+	"time"
 
 	"github.com/rigmas/joybox/internal/core/domain"
 	"github.com/rigmas/joybox/internal/core/port"
+	"github.com/rigmas/joybox/pkg/generator"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -49,8 +51,9 @@ func (o *MockOrderRepo) Add(order domain.Order) (domain.Order, error) {
 	return domain.Order{}, nil
 }
 
-func (o *MockOrderRepo) Get() ([]domain.Order, error) {
-	return []domain.Order{}, nil
+func (o *MockOrderRepo) Get() []domain.Order {
+	orders := generator.Order()
+	return orders
 }
 
 func TestAddOrder_NoError(t *testing.T) {
@@ -63,4 +66,48 @@ func TestAddOrder_NoError(t *testing.T) {
 	result, err := orderSrv.Add("/works/OL21177W", "2023-01-26")
 	assert.NoError(t, err)
 	assert.Equal(t, "Wuthering Heights", result.Book.Title)
+}
+
+func TestAddOrder_ErrorInvalidDate(t *testing.T) {
+	mockBookSrv := NewMockBookSrv()
+	mockOrderRepo := NewMockOrderRepo()
+
+	orderSrv, err := NewOrderService(mockBookSrv, mockOrderRepo)
+	assert.NoError(t, err)
+
+	result, err := orderSrv.Add("/works/OL21177W", "2023-02-31")
+	assert.NotNil(t, err)
+	assert.Equal(
+		t,
+		domain.Order{Book: domain.Book{}, PickupSchedule: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC)},
+		result,
+	)
+}
+
+func TestAddOrder_ErrorInvalidBookKey(t *testing.T) {
+	mockBookSrv := NewMockBookSrv()
+	mockOrderRepo := NewMockOrderRepo()
+
+	orderSrv, err := NewOrderService(mockBookSrv, mockOrderRepo)
+	assert.NoError(t, err)
+
+	result, err := orderSrv.Add("/TEST/123", "2023-01-30")
+	assert.NotNil(t, err)
+	assert.Equal(
+		t,
+		domain.Order{Book: domain.Book{}, PickupSchedule: time.Date(1, time.January, 1, 0, 0, 0, 0, time.UTC)},
+		result,
+	)
+}
+
+func TestFetchOrder_NoError(t *testing.T) {
+	mockBookSrv := NewMockBookSrv()
+	mockOrderRepo := NewMockOrderRepo()
+
+	orderSrv, err := NewOrderService(mockBookSrv, mockOrderRepo)
+	assert.NoError(t, err)
+
+	result := orderSrv.Get()
+	assert.NoError(t, err)
+	assert.Equal(t, "Romeo and Juliet", result[1].Book.Title)
 }

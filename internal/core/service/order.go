@@ -43,6 +43,6 @@ func (o *orderService) Add(key string, pickupSchedule string) (domain.Order, err
 	return order, nil
 }
 
-func (o *orderService) Get() ([]domain.Order, error) {
-	return nil, nil
+func (o *orderService) Get() []domain.Order {
+	return o.RepoOrder.Get()
 }

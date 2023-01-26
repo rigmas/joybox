@@ -5,7 +5,7 @@ import (
 )
 
 type OrderRepository interface {
-	Get() ([]domain.Order, error)
+	Get() []domain.Order
 	Add(domain.Order) (domain.Order, error)
 }
 
