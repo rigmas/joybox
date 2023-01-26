@@ -10,24 +10,26 @@ import (
 )
 
 type ApiHandler struct {
-	Host    string
-	Echo    *echo.Echo
-	BookSrv port.BookService
+	Host     string
+	Echo     *echo.Echo
+	BookSrv  port.BookService
+	OrderSrv port.OrderService
 }
 
-func NewApiHandler(host string,
-	bookSrv port.BookService) handler.Handler {
+func NewApiHandler(host string, bookSrv port.BookService,
+	orderSrv port.OrderService) handler.Handler {
 
 	return &ApiHandler{
-		Host:    host,
-		BookSrv: bookSrv,
+		Host:     host,
+		BookSrv:  bookSrv,
+		OrderSrv: orderSrv,
 	}
 }
 
 func (a *ApiHandler) route() {
 	route := a.Echo.Group("/api")
 	a.Echo.Use(middleware.CORS())
-	Route(route, a.BookSrv)
+	Route(route, a.BookSrv, a.OrderSrv)
 }
 
 func (a *ApiHandler) startServer() {
