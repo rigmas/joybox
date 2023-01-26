@@ -10,6 +10,8 @@ import (
 	"github.com/rigmas/joybox/internal/core/service"
 	"github.com/rigmas/joybox/internal/handler/api"
 	v1 "github.com/rigmas/joybox/internal/handler/v1"
+	"github.com/rigmas/joybox/internal/repository"
+	"github.com/rigmas/joybox/pkg/generator"
 	"github.com/rigmas/joybox/pkg/handler"
 )
 
@@ -27,8 +29,13 @@ func main() {
 	bookSrv, err := service.NewBookService(bookApi)
 	checkError(err)
 
+	ordersGenerator := generator.Order()
+	orderRepo, err := repository.NewOrderRepo(ordersGenerator)
+	checkError(err)
+	orderSrv, err := service.NewOrderService(bookSrv, orderRepo)
+
 	portHost := fmt.Sprintf(":%v", getEnv("PORT"))
-	apiHandler := v1.NewApiHandler(portHost, bookSrv)
+	apiHandler := v1.NewApiHandler(portHost, bookSrv, orderSrv)
 
 	registry := handler.NewRegistry()
 	registry.Register("API", apiHandler)
