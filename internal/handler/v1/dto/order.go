@@ -29,3 +29,13 @@ func ToOrderDtoResponse(order domain.Order) OrderDtoResponse {
 		PickupSchedule: order.PickupSchedule,
 	}
 }
+
+func ToOrdersDto(orders ...domain.Order) []OrderDtoResponse {
+	var result []OrderDtoResponse
+	for _, order := range orders {
+		temp := ToOrderDtoResponse(order)
+		result = append(result, temp)
+	}
+
+	return result
+}

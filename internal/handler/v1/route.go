@@ -16,4 +16,5 @@ func Route(e *echo.Group, bookSrv port.BookService,
 
 	eOrder := e.Group("/orders")
 	eOrder.POST("/", orderRoute.Add)
+	eOrder.GET("/", orderRoute.Get)
 }

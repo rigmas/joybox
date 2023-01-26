@@ -19,7 +19,6 @@ func NewOrderRoute(orderSrv port.OrderService) *orderRoute {
 }
 
 func (o *orderRoute) Add(c echo.Context) error {
-
 	order := new(dto.OrderDtoRequest)
 	if err := c.Bind(order); err != nil {
 		resp := dto.NewResponseDto(err.Error(), *order, "orders")
@@ -34,4 +33,12 @@ func (o *orderRoute) Add(c echo.Context) error {
 
 	resp := dto.NewResponseDto(dto.MSG_SUCCESS, dto.ToOrderDtoResponse(res), "orders")
 	return c.JSON(http.StatusCreated, resp)
+}
+
+func (o *orderRoute) Get(c echo.Context) error {
+	orders := o.OrderSrv.Get()
+
+	resp := dto.NewResponseDto(dto.MSG_SUCCESS, dto.ToOrdersDto(orders...), "orders")
+
+	return c.JSON(http.StatusOK, resp)
 }
