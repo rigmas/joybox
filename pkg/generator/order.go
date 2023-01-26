@@ -5,8 +5,8 @@ import (
 	"github.com/rigmas/joybox/internal/utils"
 )
 
-func Order() []*domain.Order {
-	var mockOrders []*domain.Order
+func Order() []domain.Order {
+	var mockOrders []domain.Order
 	mockBook1 := domain.Book{
 		Key:           "/works/OL21177W",
 		Title:         "Wuthering Heights",
@@ -31,7 +31,7 @@ func Order() []*domain.Order {
 		PickupSchedule: timeSchedule2,
 	}
 
-	mockOrders = append(mockOrders, &mockOrder1, &mockOrder2)
+	mockOrders = append(mockOrders, mockOrder1, mockOrder2)
 
 	return mockOrders
 
