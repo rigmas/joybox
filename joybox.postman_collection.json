@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "334f92c8-2db6-462e-9c0d-85d156ef2cb1",
+		"name": "csmrt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12543856"
+	},
+	"item": [
+		{
+			"name": "Open library",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://openlibrary.org/subjects/love.json?published_in=1500-1600\n&limit=2&offset=0",
+					"protocol": "http",
+					"host": [
+						"openlibrary",
+						"org"
+					],
+					"path": [
+						"subjects",
+						"love.json"
+					],
+					"query": [
+						{
+							"key": "published_in",
+							"value": "1500-1600\n"
+						},
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9876/api/books/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9876",
+					"path": [
+						"api",
+						"books",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9876/api/books/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9876",
+							"path": [
+								"api",
+								"books",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Jan 2023 15:59:05 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1425"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Success\",\n    \"data\": {\n        \"books\": [\n            {\n                \"key\": \"/works/OL21177W\",\n                \"title\": \"Wuthering Heights\",\n                \"author\": \"Emily Brontë\",\n                \"edition_number\": \"OL38586477M\"\n            },\n            {\n                \"key\": \"/works/OL362427W\",\n                \"title\": \"Romeo and Juliet\",\n                \"author\": \"William Shakespeare\",\n                \"edition_number\": \"OL26501367M\"\n            },\n            {\n                \"key\": \"/works/OL362706W\",\n                \"title\": \"Sonnets\",\n                \"author\": \"William Shakespeare\",\n                \"edition_number\": \"OL6552577M\"\n            },\n            {\n                \"key\": \"/works/OL362698W\",\n                \"title\": \"As You Like It\",\n                \"author\": \"William Shakespeare\",\n                \"edition_number\": \"OL25667349M\"\n            },\n            {\n                \"key\": \"/works/OL27776452W\",\n                \"title\": \"The Importance of Being Earnest\",\n                \"author\": \"Oscar Wilde\",\n                \"edition_number\": \"OL9694914M\"\n            },\n            {\n                \"key\": \"/works/OL267096W\",\n                \"title\": \"Анна Каренина\",\n                \"author\": \"Lev Nikolaevič Tolstoy\",\n                \"edition_number\": \"OL10601812M\"\n            },\n            {\n                \"key\": \"/works/OL8193420W\",\n                \"title\": \"The Republic\",\n                \"author\": \"Πλάτων\",\n                \"edition_number\": \"OL6959867M\"\n            },\n            {\n                \"key\": \"/works/OL551668W\",\n                \"title\": \"Cyrano de Bergerac\",\n                \"author\": \"Edmond Rostand\",\n                \"edition_number\": \"OL8887195M\"\n            },\n            {\n                \"key\": \"/works/OL15100036W\",\n                \"title\": \"The Dialogues of Plato\",\n                \"author\": \"Πλάτων\",\n                \"edition_number\": \"OL20516416M\"\n            },\n            {\n                \"key\": \"/works/OL239940W\",\n                \"title\": \"कामसूत्र\",\n                \"author\": \"Vātsyāyana\",\n                \"edition_number\": \"OL26327691M\"\n            },\n            {\n                \"key\": \"/works/OL259028W\",\n                \"title\": \"Works [37 plays, 6 poems, sonnets]\",\n                \"author\": \"William Shakespeare\",\n                \"edition_number\": \"OL26241879M\"\n            },\n            {\n                \"key\": \"/works/OL51950W\",\n                \"title\": \"Symposium\",\n                \"author\": \"Πλάτων\",\n                \"edition_number\": \"OL7023242M\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Add order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"key\": \"/works/OL21177W\",\n    \"pickup_schedule\": \"2023-01-26\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9876/api/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9876",
+					"path": [
+						"api",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"key\": \"/works/OL21177W\",\n    \"pickup_schedule\": \"2023-01-26\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9876/api/orders/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9876",
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Jan 2023 15:59:27 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "200"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Success\",\n    \"data\": {\n        \"orders\": {\n            \"book\": {\n                \"key\": \"/works/OL21177W\",\n                \"title\": \"Wuthering Heights\",\n                \"author\": \"Emily Brontë\",\n                \"edition_number\": \"OL38586477M\"\n            },\n            \"pickup_schedule\": \"2023-01-26T00:00:00Z\"\n        }\n    }\n}"
+				},
+				{
+					"name": "Invalid date",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"key\": \"/works/OL21177W\",\n    \"pickup_schedule\": \"2023-02-30\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9876/api/orders/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9876",
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Jan 2023 15:59:41 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "114"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid date: 2023-02-30\",\n    \"data\": {\n        \"orders\": {\n            \"key\": \"/works/OL21177W\",\n            \"pickup_schedule\": \"2023-02-30\"\n        }\n    }\n}"
+				},
+				{
+					"name": "Invalid key of book",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"key\": \"/TEST123\",\n    \"pickup_schedule\": \"2023-01-26\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9876/api/orders/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9876",
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Jan 2023 16:00:13 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "112"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Invalid key of book: /TEST123\",\n    \"data\": {\n        \"orders\": {\n            \"key\": \"/TEST123\",\n            \"pickup_schedule\": \"2023-01-26\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Fetch orders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9876/api/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9876",
+					"path": [
+						"api",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9876/api/orders/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9876",
+							"path": [
+								"api",
+								"orders",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 26 Jan 2023 16:00:33 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "368"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Success\",\n    \"data\": {\n        \"orders\": [\n            {\n                \"book\": {\n                    \"key\": \"/works/OL21177W\",\n                    \"title\": \"Wuthering Heights\",\n                    \"author\": \"Emily Brontë\",\n                    \"edition_number\": \"OL38586477M\"\n                },\n                \"pickup_schedule\": \"2023-01-26T00:00:00Z\"\n            },\n            {\n                \"book\": {\n                    \"key\": \"/works/OL362427W\",\n                    \"title\": \"Romeo and Juliet\",\n                    \"author\": \"William Shakespeare\",\n                    \"edition_number\": \"OL26501367M\"\n                },\n                \"pickup_schedule\": \"2023-01-30T00:00:00Z\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		}
+	]
+}
