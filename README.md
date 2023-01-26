@@ -1,8 +1,15 @@
 # Introduction
 
-This is prototype backend for e-library that use `https://openlibrary.org/` API to fetch books data.<br> <br>
-This app is built using `Go v1.18` and also have implemented unit tests using `testify` <br> <br>
+This is prototype backend for e-library that use `https://openlibrary.org/` API to fetch books data.<br>
 
+This backend are consists of 3 APIs:
+
+- GET /api/books: User or customer can see list of books.
+- POST /api/orders: User or customer can order or borrow specific book at specific time of day
+- GET /api/orders: Librarian can see list of book that will be borrowed by customers with respective pick up time schedule.
+  <br>
+
+This app is built using `Go v1.18` and also have implemented unit tests using `testify` <br> <br>
 Unit test results: <br>
 
 1.  `/internal/core/service`
